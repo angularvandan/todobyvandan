@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ToDo</title>
+    <link rel="stylesheet" href="bootstrap.css" />
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <div class="container my-3 mx-auto rounded-5">
+      <div id="short-key-on-all"tabindex="1">
+      <h2 class="text-center p-5">TODO LIST</h2>
+      <form action="" id="form">
+        <div class="row my-3">
+          <div class="col-md-6 my-3 mx-auto">
+            <div class="form-group">
+              <input
+                type="text"
+                name="todo"
+                id="todoInput"
+                class="form-control py-2 rounded-5 border-dark"
+                placeholder="Enter Task"
+                autocomplete="off"
+              />
+              <div class="invalid-feedback fs-4">Enter valid task !</div>
+            </div>
+          </div>
+          <div class="col-md-3 my-3">
+            <div class="form-group">
+              <button
+                type="submit"
+                class="btn btn-primary form-control py-2 rounded-5 border-dark"
+                id="todoSubmitButton"
+              >
+                ADD ITEM
+              </button>
+            </div>
+          </div>
+          <div class="col-md-3 my-3">
+            <div class="form-group">
+              <button
+                type="button"
+                class="btn btn-danger form-control py-2 rounded-5 border-dark"
+                id="todoDeleteButton"
+              >
+                Delete All
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+      <hr style="border: 1px solid black;">
+      <div class="row">
+        <div class="col mx-auto border-dark table-responsive-sm "id="short-key-on-div"tabindex="1">
+          <table class="table table-borderless table-hover">
+            <thead class="thead-dark">
+                <tr class="table-primary">
+                    <th scope="col">#</th>
+                    <th scope="col">Task Name</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Remove</th>
+                </tr>
+            </thead>
+            <tbody id="t_body">
+                <!-- data comes dynamic -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script type="text/javascript"src="todo.js"></script>
+</html>
