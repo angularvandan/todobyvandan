@@ -17,7 +17,7 @@ let arrowMove2=0;
 let incrementArrowMove=0;
 let clickFocusRowId=0;
 let arrowUpStatus=false;
-// it is only for gettin focus on input field when click on above
+// it is only for getting focus on input field when click on above
 const h2=document.querySelector("h2");
 h2.addEventListener("click",()=>{
   todoInput.focus();
@@ -41,7 +41,6 @@ else{
   objStatus=[{}];
   todoDeleteButton.disabled=true;
 }
-
 
 todoDeleteButton.addEventListener("click", deleteTask);
 todoSubmitButton.addEventListener("click", AddTask);
@@ -111,7 +110,7 @@ function shortKeyAll(e){
       arrowMove2++;
     }
     let arrowMoveY=Object.keys(JSON.parse(localStorage.getItem("ItemsKey"))[0]).length;
-    if(arrowMove2>0&&arrowMove2<arrowMoveY){
+    if(arrowMove2>0 && arrowMove2<arrowMoveY){
       focus2(arrowMove2);
       arrowMove2++;
     }
@@ -123,6 +122,7 @@ function shortKeyAll(e){
   }
   // remove the specific item after select with keyboard
   else if(e.keyCode==68&&(arrowMove2!=0||arrowUpStatus)){
+    // below if condition is used for delete row after upper arrow click 
     if(arrowUpStatus){
       arrowMove2++;
       arrowUpStatus=false;
@@ -131,10 +131,10 @@ function shortKeyAll(e){
     if(arrowMove2!=0){
       let status=window.confirm("do you want to delete this item ?");
       if(status){
+        // below line if for remove the line 
       t_body.children[arrowMove2-1].remove();
       // the written below is used for find the specific object keys 
       //which is used for delete the object key value
-      // Object.keys(objKey[0])[arrowMove2-1]
       delete objKey[0][Object.keys(objKey[0])[arrowMove2-1]];
       delete objStatus[0][Object.keys(objStatus[0])[arrowMove2-1]];
         if(Object.keys(objKey[0]).length!=0){
@@ -173,7 +173,10 @@ function shortKeyAll(e){
     }
   }
   // for check the table row 
-  else if(e.keyCode==32){
+  else if(e.keyCode==32&&(arrowMove2!=0||arrowUpStatus)){
+    if(arrowUpStatus){
+      arrowMove2++;
+    }
     if(arrowMove2!=0){
       objStatus[0][arrowMove2]=true;
       localStorage.setItem("ItemsStatus",JSON.stringify(objStatus));
@@ -325,7 +328,7 @@ function addTableHead(index, taskInput) {
   </tr>`;
   t_body.innerHTML += str;
 }
-// it add eventlistener on ever delete item and edit item
+// it add eventlistener on every delete item and edit item
 function addEventOnEveryItem() {
   t_body.addEventListener("click", editDeleteRow);
 }
@@ -374,6 +377,7 @@ function editDeleteRow(e) {
       e.target.parentNode.parentNode.children[3].children[0].disabled=true;
       // e.target.parentNode.parentNode.children[4].children[0].disabled=true;
     }
+    // this will run when we use checkbox unchecked
     else{
       objStatus[0][e.target.name]=false;
       localStorage.setItem("ItemsStatus",JSON.stringify(objStatus));
@@ -385,7 +389,7 @@ function editDeleteRow(e) {
     }
   }
   else{
-    // take a id of row and used in shotcuts key listener 
+    // take a id of row and used in shortcuts key listener 
     todoInput.focus(); 
     clickFocusRowId=e.target.parentNode.id;
   }
